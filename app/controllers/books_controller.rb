@@ -37,6 +37,14 @@ class BooksController < ApplicationController
     redirect_to book_path(@books)
   end
 
+  def search
+    if params[:query].present?
+      @books = Book.where("title ILIKE ? OR author ILIKE ? OR categories ILIKE ?",
+                          "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @books = Book.all
+    end
+  end
 
   private
 

@@ -25,23 +25,37 @@
 </nav>
 
 <div class="mx-5 p-4">
-  <h2>What book are you searching?</h2>
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Type in book title, author name, book genre etc." aria-label="Search Keywords" aria-describedby="basic-addon2">
+  <h2>Rent your favorite books</h2>
+  <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3" do %>
+    <%= text_field_tag :query, params[:query], placeholder: "Type in book title, author name, book genre etc.", class: "form-control" %>
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button">Search</button>
+      <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
     </div>
-  </div>
+  <% end %>
 </div>
 
-<div id="books">
-<h2>This is our fine collection of books</h2>
-  <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
-  <% end %>
+<div class="container">
+  <h2>Popular Books</h2>
+
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <% if book.image.attached? %>
+            <%= image_tag book.image, width: "100%", height: "300", style: "object-fit: cover;" , class: "card-img-top"%>
+          <% else %>
+            <p class="text-center">Aucune image disponible</p>
+          <% end %>
+          <div class="card-body">
+            <%= render book %>
+            <p class="card-title">
+              <%= link_to "Show this book", book, class: "btn btn-primary btn-sm" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
