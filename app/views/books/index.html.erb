@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mx-5 p-4">
+<nav class="navbar navbar-expand-lg mx-5 p-4">
   <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
     <%= image_tag('OnLibrary_logo.svg', width: 50, height: 50, alt: 'OnLibrary_logo', class: 'd-inline-block align-top mr-2') %>
-    OnLibrary
+    <h2>OnLibrary</h2>
     <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,40 +24,43 @@
   </div>
 </nav>
 
-<div class="mx-5 p-4">
-  <h2>Rent your favorite books</h2>
-  <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3" do %>
-    <%= text_field_tag :query, params[:query], placeholder: "Type in book title, author name, book genre etc.", class: "form-control" %>
-    <div class="input-group-append">
-      <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
-    </div>
-  <% end %>
-</div>
-
-<div class="container">
-  <h2>Popular Books</h2>
-
+<div class="container my-5">
   <div class="row">
-    <% @books.each do |book| %>
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card h-100">
-          <% if book.image.attached? %>
-            <%= image_tag book.image, width: "100%", height: "300", style: "object-fit: cover;" , class: "card-img-top"%>
-          <% else %>
-            <p class="text-center">Aucune image disponible</p>
-          <% end %>
-          <div class="card-body">
-            <%= render book %>
-            <p class="card-title">
-              <%= link_to "Show this book", book, class: "btn btn-primary btn-sm" %>
-            </p>
-          </div>
+    <div class="col-12 mb-4">
+      <h1>Rent your favorite books</h1>
+      <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3" do %>
+        <%= text_field_tag :query, params[:query], placeholder: "Type in book title, author name, book genre etc.", class: "form-control" %>
+        <div class="input-group-append">
+          <%= submit_tag "Search", class: "btn btn-brown text-light border" %>
         </div>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <h2 class="mt-5">Popular Books</h2>
+
+      <div class="row">
+        <% @books.each do |book| %>
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100">
+              <% if book.image.attached? %>
+                <%= image_tag book.image, width: "100%", height: "250", style: "object-fit: cover;" , class: "card-img-top"%>
+              <% else %>
+                <p class="text-center">No images available</p>
+              <% end %>
+              <div class="card-body">
+                <%= render book %>
+                <p class="card-title">
+                  <%= link_to "Show this book", book, class: "btn btn-primary btn-sm" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
-
 <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
 <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-flat" %>
 <% if user_signed_in? %>
