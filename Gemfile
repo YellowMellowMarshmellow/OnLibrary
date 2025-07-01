@@ -50,6 +50,11 @@ gem "font-awesome-rails"
 gem "simple_form", github: "heartcombo/simple_form"
 # gem "sassc-rails"
 gem 'dartsass-rails'
+gem 'sassc'
+
+gem 'font-awesome-sass', '~> 6.0'
+
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem "dotenv-rails"
