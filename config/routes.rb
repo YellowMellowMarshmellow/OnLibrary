@@ -13,5 +13,11 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+
+    # Nested route of rentals under a book
+    resources :rentals, only: [:create, :update]
   end
+
+  # Separate route for rentals#index to show all rentals of current user:
+  resources :rentals, only: [:index]
 end
