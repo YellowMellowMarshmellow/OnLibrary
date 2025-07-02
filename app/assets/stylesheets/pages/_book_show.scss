@@ -37,26 +37,21 @@ p {
     font-size: 25px;
 }
 
-.input-group {
-    background-color: #322110;
-    border-radius: 8px;
-    height: 55px;
+.card-btn {
+    width: 7rem;
+    background-color: #BC70FF;
 }
 
-.input-group .form-control {
-    background-color: #f2e6d5;
-    border: 1px solid #ccc;
-    height: 55px;
+.btn-link:hover {
+    color: #BC70FF;
 }
 
-.btn-brown {
-    height: 55px;
-}
-
-.btn-primary {
-    background-color: #322110;
+.principal-btn {
+    background-color: #BC70FF;
     border: none;
     border-radius: 3px;
+    width: 20rem;
+    margin-top: 8.7rem;
 }
 
 .btn-primary:hover {
@@ -64,6 +59,10 @@ p {
     color: white;
 }
 
-.card {
-    background: transparent;
+.btn-link {
+    text-decoration: none;
+    color: black;
+    font-family: 'inter';
+    font-size: 18px;
+    font-weight: 500;
 }
