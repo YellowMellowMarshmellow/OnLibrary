@@ -1,5 +1,59 @@
-<div class="book">
-  <h2><%= @book.title %></h2>
-  <p><strong>Author:</strong> <%= @book.author %></p>
-  <p><%= @book.description %></p>
+<div class="container col-xxl-8 px-4 py-5">
+  <%= link_to root_path, class: "btn btn-link" do %>
+    <i class="fa-solid fa-chevron-left"></i> Home
+  <% end %> 
+  <div class="row align-items-start g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6" style="margin-top:20px;">
+      <%= image_tag @book.image, class: "d-block mx-lg-auto img-fluid", alt: @book.title, width: 300, height: 100, loading: "lazy" %>
+    </div>
+
+    <div class="col-lg-6 d-flex flex-column justify-content-between h-100" style="margin-top:20px;"> 
+        <h2 class="display-5 fw-bold text-body-emphasis lh-1 mb-3"><%= @book.title %></h2>
+        <p class="p-name" style="text-decoration-line: underline"><%= @book.author %></p>
+        <p class="lead"><%= @book.description %></p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4"> 
+        <button type="button" class="principal-btn btn btn-primary btn-lg px-4 me-md-2">Rent this book</button> 
+      </div>
+    </div> 
+  </div> 
 </div>
+
+<%# carroussel %>
+<div class="container my-5">
+  <h3 class="mb-4">Books others also like</h3>
+
+  <div id="recommendedBooksCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @recommended_books.each_slice(8).with_index do |books_group, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="row row-cols-2 row-cols-md-4 g-4">
+            <% books_group.each do |book| %>
+              <div class="col text-center">
+                <%= link_to book_path(book) do %>
+                  <%= image_tag book.image,
+                    alt: book.title,
+                    class: "img-fluid rounded shadow-sm mb-2",
+                    style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+                <% end %>
+                <h6 class="mb-1"><%= truncate(book.title, length: 20) %></h6>
+                <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Flèches -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#recommendedBooksCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#recommendedBooksCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
