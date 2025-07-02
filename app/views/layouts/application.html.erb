@@ -16,6 +16,9 @@
   </head>
 
   <body>
+    <header>
+      <%= render "navbar", book: @book %>
+    </header>
     <%= yield %>
   </body>
 </html>
