@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     set_book
-    @recommended_books = Book.where.not(id: @book.id).limit(4)
+    @recommended_books = Book.where.not(id: @book.id).limit(10)
   end
 
   def new

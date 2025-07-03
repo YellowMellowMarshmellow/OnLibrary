@@ -8,6 +8,9 @@ class RentalsController < ApplicationController
   end
 
   def create
+    duration_days = params[:duration_days].to_i
+    duration_days = [duration_days, 30].min
+
     @rental = @book.rentals.new(user: current_user, rental_start_date: Date.current)
 
     if @rental.save
@@ -25,6 +28,12 @@ class RentalsController < ApplicationController
       flash.now[:alert] = 'Unable to update rental.'
       render :index, status: :unprocessable_entity
     end
+  end
+
+  def return
+    @rental = Rental.find(params[:id])
+    @rental.update(rental_end_date: Date.current)
+    redirect_to rentals_path, notice: "Book returned successfully."
   end
 
   private

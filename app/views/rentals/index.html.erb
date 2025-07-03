@@ -1,1 +1,39 @@
-<%= @rentals %>
+<div class="container">
+    <%= link_to root_path, class: "btn btn-link", style: "position: relative; z-index: 10;" do %>
+        <i class="fa-solid fa-chevron-left"></i> Home
+    <% end %>
+<h1>My Rentals</h1>
+
+<% if @rentals.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>View</th>
+        <th>Book Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rentals.each do |rental| %>
+        <tr>
+          <td><%= image_tag rental.book.image, alt: rental.book.title, width: 50 %></td>
+          <td><%= rental.book.title %></td>
+          <td><%= rental.rental_start_date %></td>
+          <td><%= rental.rental_end_date || 'Ongoing' %></td>
+          <td>
+            <% if rental.rental_end_date.nil? %>
+              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch %>
+            <% else %>
+              Returned
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no rentals currently.</p>
+<% end %>
+</div>
