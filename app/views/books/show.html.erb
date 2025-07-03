@@ -14,7 +14,9 @@
       <p class="lead"><%= @book.description %></p>
 
       <% if user_signed_in? %>
-        <% unless current_user.rentals.where(book: @book).where("rental_end_date IS NULL OR rental_end_date >= ?", Date.current).exists? %>
+        <% if current_user.rentals.where(book: @book).where("rental_end_date IS NULL OR rental_end_date >= ?", Date.current).exists? %>
+            <%= link_to 'View My Rentals', rentals_path, class: 'btn btn-primary mt-4' %>
+        <% else %>
           <div data-controller="rent-book" class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
             <!-- button -->
             <button type="button"
@@ -30,10 +32,6 @@
         <% end %>
       <% else %>
         <p>Please <%= link_to 'sign in', new_user_session_path %> to rent this book.</p>
-      <% end %>
-
-      <% if current_user.rentals.exists?(book_id: @book.id, rental_end_date: nil) %>
-          <%= link_to 'View My Rentals', rentals_path, class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
