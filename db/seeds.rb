@@ -9,6 +9,7 @@
 #   end
 
 puts "Cleaning database..."
+Rental.destroy_all
 Book.destroy_all
 
 user = User.first
@@ -57,6 +58,54 @@ books_data = [
     user: user,
     image_file: "The_Hobbit_cover.jpg"
   },
+  {
+    title: "The Lord of the Rings",
+    author: "J.R.R. Tolkien",
+    categories: "Fantasy, Adventure",
+    description: "An epic quest to destroy the One Ring and save Middle-earth.",
+    user: user,
+    image_file: "The_Lord_of_the_Rings_cover.jpg"
+  },
+  {
+    title: "The Wave",
+    author: "Todd Strasser",
+    categories: "Young Adult, Drama",
+    description: "A high school experiment to demonstrate the rise of fascism spirals out of control.",
+    user: user,
+    image_file: "The_Wave_cover.jpeg"
+  },
+  {
+    title: "The BFG",
+    author: "Roald Dahl",
+    categories: "Children's Literature, Fantasy",
+    description: "A young girl befriends a Big Friendly Giant who protects her from man-eating giants.",
+    user: user,
+    image_file: "The_BFG_cover.jpg"
+  },
+  {
+    title: "Les Furtifs",
+    author: "Alain Damasio",
+    categories: "Science Fiction, Speculative Fiction",
+    description: "A thrilling story exploring invisible beings living alongside humans and challenging society’s norms.",
+    user: user,
+    image_file: "Les_Furtifs_cover.jpg"
+  },
+  {
+    title: "Marlavant",
+    author: "A.D Quilliec",
+    categories: "Science Fiction, Adventure",
+    description: "Marlavant is a gripping tale of a forgotten hero facing shadows from the past to save a dying world.",
+    user: user,
+    image_file: "Marlavant_cover.jpg"
+  },
+  {
+  title: "Arsène Lupin, Gentleman Burglar",
+  author: "Maurice Leblanc",
+  categories: "Mystery, Crime, Classic",
+  description: "Adventures of the clever and charming master thief Arsène Lupin.",
+  user: user,
+  image_file: "Arsene_Lupin_cover.jpg"
+}
 ]
 
 books_data.each do |book_data|

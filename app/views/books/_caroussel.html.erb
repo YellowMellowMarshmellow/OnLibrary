@@ -1,0 +1,45 @@
+<div class="container my-5">
+    <h3 class="mb-4">Books others also like</h3>
+
+    <% if @recommended_books.present? %>
+        <div id="recommendedBooksCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% @recommended_books.each_slice(4).with_index do |books_group, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                        <div class="row row-cols-2 row-cols-md-4 g-4">
+                            <% books_group.each do |book| %>
+                                <div class="col text-center">
+                                    <%= link_to book_path(book) do %>
+                                        <%= image_tag book.image, alt: book.title,
+                                            class: "img-fluid rounded shadow-sm mb-2" ,
+                                            style: "height: 280px; object-fit: contain; width: 100%; background: transparent;"
+                                            %>
+                                            <% end %>
+                                                <h6 class="mb-1">
+                                                    <%= truncate(book.title, length: 20) %>
+                                                </h6>
+                                                <%= link_to 'View Details' , book_path(book),
+                                                    class: "btn btn-sm btn-primary card-btn" %>
+                                </div>
+                                <% end %>
+                        </div>
+                    </div>
+                    <% end %>
+            </div>
+        </div>
+        <% end %>
+
+            <!-- Arrows -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#recommendedBooksCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel carousel-control-next" type="button" data-bs-target="#recommendedBooksCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+</div>
+</div>
