@@ -1,20 +1,7 @@
-
 <div class="container my-5">
-  <!-- Centered intro & search section -->
-  <div class="d-flex justify-content-center">
-    <div class="w-100" style="max-width: 800px;">
-      <h2 class="text-center">OnLibrary expands books for schools</h2>
-      <p class="text-center mb-4">OnLibrary allows students at the same school to share their books with little charges. <br> It's where you can rent and read your favorite books.</p>
-
-      <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3 my-2 mb-4" do %>
-        <%= text_field_tag :query, params[:query], placeholder: "Type in book title, author name, book genre etc.", class: "form-control" %>
-        <%= submit_tag "Search", class: "btn btn-primary text-light btn-search" %>
-      <% end %>
-    </div>
-  </div>
-
     <div class="container my-5">
-      <h2 class="mt-6">Popular Books</h2>
+      <%= link_to "← Back to Home", root_path, class: "btn btn-outline-secondary mb-3" %>
+      <h2 class="mt-6">All Books</h2>
 
       <div class="row row-cols-2 row-cols-md-4 g-4 my-2">
         <% @books.each do |book| %>
