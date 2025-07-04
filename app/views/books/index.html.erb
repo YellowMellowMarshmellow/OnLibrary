@@ -35,7 +35,7 @@
                   <%= truncate(book.title, length: 20) %>
                 </h6>
                 <p class="card-text text-muted small mb-2"><%= book.author %></p>
-
+                <%= render "books/availability", book: book %>
                 <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
               </div>
             </div>
