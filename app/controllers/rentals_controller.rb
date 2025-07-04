@@ -9,11 +9,12 @@ class RentalsController < ApplicationController
 
   def create
     duration_days = params[:duration_days].to_i
-    duration_days = [duration_days, 30].min
+    [duration_days, 30].min
 
     @rental = @book.rentals.new(user: current_user, rental_start_date: Date.current)
 
     if @rental.save
+      @book.update(available: false)
       redirect_to rentals_path, notice: 'Book was successfully rented.'
     else
       flash.now[:alert] = 'Unable to rent book.'
@@ -23,6 +24,7 @@ class RentalsController < ApplicationController
 
   def update
     if @rental.update(rental_end_date: Date.current)
+      @rental.book.update(available: true)
       redirect_to rentals_path, notice: 'Rental updated successfully.'
     else
       flash.now[:alert] = 'Unable to update rental.'

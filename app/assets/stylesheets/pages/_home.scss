@@ -67,3 +67,22 @@ p {
 .card {
     background: transparent;
 }
+
+.card-btn {
+    margin-top: 0px;
+}
+
+.available-sign {
+    font-size: 15px;
+}
+
+.lo-btn {
+    border: 2px solid #a13afb;
+    color: #322110;
+}
+
+.lo-btn:hover {
+    background-color: #a13afb;
+    color: white;
+    border: none;
+}
