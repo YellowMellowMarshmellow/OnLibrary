@@ -1,43 +1,52 @@
 
 <div class="container my-5">
-  <div class="row">
-    <div class="col-12 mb-4">
-      <h1>Rent your favorite books</h1>
-      <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3" do %>
+  <!-- Centered intro & search section -->
+  <div class="d-flex justify-content-center">
+    <div class="w-100" style="max-width: 800px;">
+      <h2 class="text-center">OnLibrary expands books for schools</h2>
+      <p class="text-center mb-4">OnLibrary allows students at the same school to share their books with little charges. <br> It's where you can rent and read your favorite books.</p>
+
+      <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3 my-2 mb-4" do %>
         <%= text_field_tag :query, params[:query], placeholder: "Type in book title, author name, book genre etc.", class: "form-control" %>
-        <div class="input-group-append">
-          <%= submit_tag "Search", class: "btn btn-brown text-light border" %>
-        </div>
+        <%= submit_tag "Search", class: "btn btn-primary text-light btn-search" %>
       <% end %>
     </div>
+  </div>
 
-    <div class="container">
-      <h2 class="mt-5">Popular Books</h2>
+    <div class="container my-5">
+      <h2 class="mt-6">Popular Books</h2>
 
-      <div class="row">
+      <div class="row row-cols-2 row-cols-md-4 g-4 my-2">
         <% @books.each do |book| %>
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card h-100">
-              <% if book.image.attached? %>
-                <%= image_tag book.image, width: "100%", height: "250", style: "object-fit: cover;" , class: "card-img-top"%>
-              <% else %>
-                <p class="text-center">No images available</p>
+          <div class="col text-start my-5">
+            <div class="card h-100 border-0">
+              <%= link_to book_path(book) do %>
+                <% if book.image.attached? %>
+                  <%= image_tag book.image, alt: book.title,
+                      class: "card-img-top img-fluid rounded shadow-sm",
+                      style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+                <% else %>
+                  <div class="text-center py-5 bg-light text-muted">No image</div>
+                <% end %>
               <% end %>
-              <div class="card-body">
-                <%= render book %>
-                <p class="card-title">
-                  <%= link_to "Show this book", book, class: "btn btn-primary btn-sm" %>
-                </p>
+
+              <div class="card-body p-2">
+                <h6 class="card-title fw-bold mb-1">
+                  <%= truncate(book.title, length: 20) %>
+                </h6>
+                <p class="card-text text-muted small mb-2"><%= book.author %></p>
+
+                <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
               </div>
             </div>
           </div>
         <% end %>
       </div>
     </div>
-  </div>
 </div>
-<%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
-<%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-flat" %>
-<% if user_signed_in? %>
-<%= current_user.email %>
-<% end%>
+
+  <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
+  <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-flat" %>
+  <% if user_signed_in? %>
+  <%= current_user.email %>
+  <% end%>
