@@ -39,8 +39,17 @@ p {
 
 .card-btn {
     width: 7rem;
+    height: 40px;
     background-color: #BC70FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
 }
+
 
 .btn-link:hover {
     color: #BC70FF;
