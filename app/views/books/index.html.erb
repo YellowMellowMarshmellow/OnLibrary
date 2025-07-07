@@ -22,7 +22,8 @@
                   <%= truncate(book.title, length: 20) %>
                 </h6>
                 <p class="card-text text-muted small mb-2"><%= book.author %></p>
-
+                <%= render "books/availability", book: book %>
+                <p style="margin-bottom: 7px; margin-top: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "$", precision: 0) %> /month</p>
                 <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
               </div>
             </div>
@@ -31,9 +32,3 @@
       </div>
     </div>
 </div>
-
-  <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
-  <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-flat" %>
-  <% if user_signed_in? %>
-  <%= current_user.email %>
-  <% end%>
