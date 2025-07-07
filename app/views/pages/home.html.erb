@@ -1,2 +1,62 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container my-5">
+  <!-- Centered intro & search section -->
+  <div class="d-flex justify-content-center">
+    <div class="w-100" style="max-width: 800px;">
+      <h2 class="text-center">OnLibrary expands books for schools</h2>
+      <p class="text-center mb-4">OnLibrary allows students at the same school to share their books with little charges. <br> It's where you can rent and read your favorite books.</p>
+
+      <%= form_with url: search_books_path, method: :get, local: true, class: "input-group mb-3 my-2 mb-4" do %>
+        <%= text_field_tag :query, params[:query], placeholder: "Type in book title, author name, book genre etc.", class: "form-control" %>
+        <%= submit_tag "Search", class: "btn btn-primary text-light btn-search" %>
+      <% end %>
+    </div>
+  </div>
+
+    <div class="container my-5">
+      <h2 class="mt-6">Popular Books</h2>
+
+      <div class="row row-cols-2 row-cols-md-4 g-4 my-2">
+        <% @books.each do |book| %>
+          <div class="col text-start my-5">
+            <div class="card h-100 border-0">
+              <%= link_to book_path(book) do %>
+                <% if book.image.attached? %>
+                  <%= image_tag book.image, alt: book.title,
+                      class: "card-img-top img-fluid rounded",
+                      style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+                <% else %>
+                  <div class="text-center py-5 bg-light text-muted">No image</div>
+                <% end %>
+              <% end %>
+
+              <div class="card-body p-2">
+                <h6 class="card-title fw-bold mb-1">
+                  <%= truncate(book.title, length: 20) %>
+                </h6>
+                <p class="card-text text-muted small mb-2"><%= book.author %></p>
+
+                <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="col text-start my-5">
+          <div class="card h-100 border-0">
+            <div class="fake-image d-flex justify-content-center align-items-center"
+              style="height: 280px; border-radius: 0.375rem;">
+              <%= link_to "Check All Our Books 👉", books_path,
+                class: "btn btn-primary",
+                style: "border-radius: 0.375rem;" %>
+            </div>
+            <div class="card-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
+  <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-flat" %>
+  <% if user_signed_in? %>
+  <%= current_user.email %>
+  <% end%>

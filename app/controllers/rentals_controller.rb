@@ -47,5 +47,4 @@ class RentalsController < ApplicationController
   def set_rental
     @rental = @book.rentals.find(params[:id])
   end
-
 end
