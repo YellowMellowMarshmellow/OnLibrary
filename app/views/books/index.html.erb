@@ -10,7 +10,7 @@
               <%= link_to book_path(book) do %>
                 <% if book.image.attached? %>
                   <%= image_tag book.image, alt: book.title,
-                      class: "card-img-top img-fluid rounded shadow-sm",
+                      class: "card-img-top img-fluid rounded",
                       style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
                 <% else %>
                   <div class="text-center py-5 bg-light text-muted">No image</div>
