@@ -12,16 +12,17 @@
       <h2 class="display-5 fw-bold text-body-emphasis lh-1 mb-3"><%= @book.title %></h2>
       <p class="p-name" style="text-decoration-line: underline"><%= @book.author %></p>
       <p class="lead"><%= @book.description %></p>
+      <h3 class="fw-bold lh-1 my-5 mb-3">€ <%= @book.price %> /month</h3>
 
       <% if user_signed_in? %>
         <% if current_user.rentals.where(book: @book).where("rental_end_date IS NULL OR rental_end_date >= ?", Date.current).exists? %>
             <%= link_to 'View My Rentals', rentals_path, class: 'btn btn-primary mt-4' %>
         <% else %>
-          <div data-controller="rent-book" class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+            <div data-controller="rent-book" class="d-flex flex-column align-items-start gap-2 mt-1">
             <%= render "books/availability", book: @book %>
             <!-- button -->
             <button type="button"
-                    class="principal-btn btn btn-primary btn-lg px-4 me-md-2"
+                    class="principal-btn btn btn-primary btn-lg px-4"
                     data-rent-book-target="button"
                     data-action="rent-book#openForm">
               Rent this book
@@ -34,6 +35,7 @@
       <% else %>
         <p>Please <%= link_to 'sign in', new_user_session_path %> to rent this book.</p>
       <% end %>
+
     </div>
   </div>
 </div>
