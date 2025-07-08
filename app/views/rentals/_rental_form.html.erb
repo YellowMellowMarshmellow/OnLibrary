@@ -1,7 +1,7 @@
 <div data-rent-book-target="form" class="d-none w-100">
   <%= form_with url: book_rentals_path(@book), method: :post, html: { class: "d-flex flex-column gap-3 mt-3" } do |f| %>
     <div class="mb-2">
-      <%= f.label :rental_end_date, "Select end date" %>
+      <%= f.label :rental_end_date, "Select start date" %>
       <%= f.date_field :rental_end_date, min: Date.today, max: Date.today + 30.days, class: "form-control" %>
       <small class="text-muted">Maximum 30 days from today.</small>
     </div>
