@@ -19,8 +19,11 @@
     <header>
       <%= render "books/navbar", book: @book, rental: @rental %>
     </header>
-    <%= yield %>
 
-    <%= render "books/footer" %>
+    <main>
+      <%= yield %>
+    </main>
+
+      <%= render "books/footer" %>
   </body>
 </html>
