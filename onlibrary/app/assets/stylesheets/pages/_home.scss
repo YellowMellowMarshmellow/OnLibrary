@@ -1,0 +1,148 @@
+// Specific CSS for your home-page
+html,
+body {
+    height: 100%;
+    background-color: #fff5e4;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar {
+    background-color: #fff5e4;
+}
+
+h1 {
+    font-family: "UoqMunThenKhung", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #322110;
+    font-size: 65px;
+}
+
+h2 {
+    font-family: "UoqMunThenKhung", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #322110;
+}
+
+h3 {
+    font-family: "UoqMunThenKhung", serif;
+    font-weight: 200;
+    font-style: normal;
+    color: #322110;
+}
+
+p {
+    font-family: "inter";
+}
+
+.p-name {
+    font-size: 25px;
+}
+
+.input-group {
+    background-color: #BC70FF;
+    border-radius: 8px;
+    height: 55px;
+}
+
+.input-group .form-control {
+    background-color: #f2e6d5;
+    border: 1px solid #ccc;
+    height: 55px;
+}
+
+.btn-brown {
+    height: 55px;
+}
+
+.btn-primary {
+    background-color: #BC70FF;
+    border: none;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #a13afb;
+    color: white;
+}
+
+.btn-primary:active {
+    background-color: #8f2ce0;
+    color: white;
+    box-shadow: none;
+}
+
+.card {
+    background: transparent;
+}
+
+.card-btn {
+    margin-top: 0px;
+}
+
+.available-sign {
+    font-size: 15px;
+}
+
+.lo-btn {
+    border: 2px solid #a13afb;
+    color: #322110;
+}
+
+.lo-btn:hover {
+    background-color: #a13afb;
+    color: white;
+    border: none;
+}
+
+.hero {
+    width: 100%;
+    height: 900px;
+    margin-bottom: 0rem;
+    background-image: url('Librairie.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content {
+    width: 100%;
+    margin-top: 10rem;
+    background: rgba(0, 0, 0, 0.0);
+    padding: 3rem;
+    border-radius: 8px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem;
+    color: white;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
+}
+
+.hero-btn {
+    background-color: #a13afb;
+    padding: 1rem;
+}
+
+.btn-fixed-width {
+    width: 220px; // or whatever fixed width you want
+}

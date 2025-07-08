@@ -1,0 +1,82 @@
+// Specific CSS for your home-page
+body {
+    background-color: #fff5e4;
+}
+
+.navbar {
+    background-color: #fff5e4;
+}
+
+h1 {
+    font-family: "UoqMunThenKhung", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #322110;
+    font-size: 65px;
+}
+
+h2 {
+    font-family: "UoqMunThenKhung", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #322110;
+}
+
+h3 {
+    font-family: "UoqMunThenKhung", serif;
+    font-weight: 200;
+    font-style: normal;
+    color: #322110;
+}
+
+p {
+    font-family: "inter";
+}
+
+.p-name {
+    font-size: 25px;
+}
+
+.card-btn {
+    width: 7rem;
+    height: 40px;
+    background-color: #BC70FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+}
+
+
+.btn-link:hover {
+    color: #BC70FF;
+}
+
+.principal-btn {
+    background-color: #BC70FF;
+    border: none;
+    border-radius: 3px;
+    width: 20rem;
+    margin-top: 8.7rem;
+}
+
+.btn-primary:hover {
+    background-color: #a648f8;
+    color: white;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: black;
+    font-family: 'inter';
+    font-size: 16px;
+    margin-bottom: 4%;
+    font-weight: 500;
+}
+
+.ms-custom {
+    padding-left: 3.5rem;
+}
