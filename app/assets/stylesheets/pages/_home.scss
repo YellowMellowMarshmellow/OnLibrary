@@ -146,3 +146,35 @@ p {
 .btn-fixed-width {
     width: 220px; // or whatever fixed width you want
 }
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #a13afb !important; // cor roxa
+  color: white !important;
+  border-color: #a13afb !important;
+  box-shadow: none !important;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn-purple {
+  background-color: #BC70FF;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.btn-purple:hover,
+.btn-purple:focus,
+.btn-purple:active,
+input.btn-purple:hover,
+input.btn-purple:focus,
+input.btn-purple:active {
+  background-color: #a13afb !important;
+  color: white !important;
+  box-shadow: none !important;
+}

@@ -24,7 +24,7 @@
           <td><%= rental.rental_end_date || 'Ongoing' %></td>
           <td>
             <% if rental.rental_end_date.nil? %>
-              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch, class: "btn btn-sm btn-primary card-btn" %>
+              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch, class: "btn btn-sm btn-purple card-btn" %>
             <% else %>
               Returned
             <% end %>
