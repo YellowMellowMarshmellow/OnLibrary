@@ -24,7 +24,7 @@
               <h6 class="card-title fw-bold mb-1"><%= truncate(book.title, length: 20) %></h6>
               <p class="card-text text-muted small mb-2"><%= book.author %></p>
               <%= render "books/availability", book: book %>
-              <p style="margin-bottom: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "$", precision: 0) %> /month</p>
+              <p style="margin-bottom: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "€") %> /month</p>
               <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
             </div>
           </div>
