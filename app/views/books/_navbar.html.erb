@@ -16,21 +16,31 @@
       </li>
 
       <% if user_signed_in? %>
-        <li class="nav-item"
+        <li class="nav-item">
           <span class="nav-link disabled"><%= current_user.email %></span>
         </li>
         <li class="nav-item">
           <%= link_to "My Rentals", rentals_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-outline-secondary" %>
+          <%= link_to "Log out", destroy_user_session_path,
+              method: :delete,
+              data: { turbo_method: :delete },
+              class: "btn btn-outline-secondary" %>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
+        <li class="nav-item" style="position: relative; z-index: 10;">
+          <%= link_to "Log in", new_user_session_path,
+              class: "btn btn-primary",
+              data: { turbo: false },
+              style: "position: relative; z-index: 10; width: 100%;" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary" %>
+
+        <li class="nav-item" style="position: relative; z-index: 10;">
+          <%= link_to "Sign up", new_user_registration_path,
+              class: "btn btn-outline-secondary",
+              data: { turbo: false },
+              style: "position: relative; z-index: 10; width: 100%;" %>
         </li>
       <% end %>
     </ul>

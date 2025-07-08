@@ -56,12 +56,18 @@ p {
 .btn-primary {
     background-color: #BC70FF;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
 }
 
 .btn-primary:hover {
     background-color: #a13afb;
     color: white;
+}
+
+.btn-primary:active {
+  background-color: #8f2ce0;
+  color: white;
+  box-shadow: none;
 }
 
 .card {
@@ -86,6 +92,7 @@ p {
     color: white;
     border: none;
 }
+
 
 
 
@@ -125,4 +132,8 @@ p {
 .hero-btn {
     background-color: #a13afb;
     padding: 1rem;
+}
+=======
+.btn-fixed-width {
+  width: 220px; // or whatever fixed width you want
 }
