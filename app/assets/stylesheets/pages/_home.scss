@@ -82,6 +82,11 @@ p {
 }
 
 .btn-outline {
+    border: 2px solid #BC70FF;
+    border-radius: 8px;
+}
+
+.btn-outline:hover {
     border: 2px solid #a13afb;
     border-radius: 8px;
 }
