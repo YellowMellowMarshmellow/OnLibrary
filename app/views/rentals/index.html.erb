@@ -5,10 +5,10 @@
 <h1>My Rentals</h1>
 
 <% if @rentals.any? %>
-  <table>
+  <table class="rental-table">
     <thead>
       <tr>
-        <th>View</th>
+        <th>Book</th>
         <th>Book Title</th>
         <th>Start Date</th>
         <th>End Date</th>
@@ -24,7 +24,7 @@
           <td><%= rental.rental_end_date || 'Ongoing' %></td>
           <td>
             <% if rental.rental_end_date.nil? %>
-              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch %>
+              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch, class: "btn btn-sm btn-primary card-btn" %>
             <% else %>
               Returned
             <% end %>
