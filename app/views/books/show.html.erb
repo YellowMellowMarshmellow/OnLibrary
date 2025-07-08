@@ -41,3 +41,7 @@
 </div>
 
 <%= render "books/caroussel", book: @book %>
+
+<div style="position: relative; z-index: 9999; margin-top: 20px;">
+  <%= link_to 'Login (Test Button)', new_user_session_path, class: 'btn btn-warning' %>
+</div>
