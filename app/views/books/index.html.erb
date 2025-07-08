@@ -1,34 +1,47 @@
 <div class="container my-5">
-    <div class="container my-5">
-      <%= link_to "← Back to Home", root_path, class: "btn btn-outline-secondary mb-3" %>
-      <h2 class="mt-6">All Books</h2>
 
-      <div class="row row-cols-2 row-cols-md-4 g-4 my-2">
-        <% @books.each do |book| %>
-          <div class="col text-start my-5">
-            <div class="card h-100 border-0">
-              <%= link_to book_path(book) do %>
-                <% if book.image.attached? %>
-                  <%= image_tag book.image, alt: book.title,
-                      class: "card-img-top img-fluid rounded",
-                      style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
-                <% else %>
-                  <div class="text-center py-5 bg-light text-muted">No image</div>
-                <% end %>
+  <!-- ✅ Search Bar -->
+  <div class="mb-4">
+    <%= form_with url: search_books_path, method: :get, local: true do |f| %>
+      <div class="input-group">
+        <%= f.text_field :query, placeholder: "Search by title, author or category", class: "form-control" %>
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="container my-5">
+    <%= link_to "← Back to Home", root_path, class: "btn btn-outline-secondary mb-3" %>
+    <h2 class="mt-6">All Books</h2>
+
+    <div class="row row-cols-2 row-cols-md-4 g-4 my-2">
+      <% @books.each do |book| %>
+        <div class="col text-start my-5">
+          <div class="card h-100 border-0">
+            <%= link_to book_path(book) do %>
+              <% if book.image.attached? %>
+                <%= image_tag book.image, alt: book.title,
+                    class: "card-img-top img-fluid rounded",
+                    style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+              <% else %>
+                <div class="text-center py-5 bg-light text-muted">No image</div>
               <% end %>
+            <% end %>
 
-              <div class="card-body p-2">
-                <h6 class="card-title fw-bold mb-1">
-                  <%= truncate(book.title, length: 20) %>
-                </h6>
-                <p class="card-text text-muted small mb-2"><%= book.author %></p>
-                <%= render "books/availability", book: book %>
-                <p style="margin-bottom: 7px; margin-top: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "$", precision: 0) %> /month</p>
-                <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
-              </div>
+            <div class="card-body p-2">
+              <h6 class="card-title fw-bold mb-1">
+                <%= truncate(book.title, length: 20) %>
+              </h6>
+              <p class="card-text text-muted small mb-2"><%= book.author %></p>
+              <%= render "books/availability", book: book %>
+              <p style="margin-bottom: 7px; margin-top: 7px; font-size: 15px; font-weight: 500;">
+                <%= number_to_currency(book.price, unit: "$", precision: 0) %> /month
+              </p>
+              <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>

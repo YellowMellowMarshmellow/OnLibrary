@@ -1,22 +1,35 @@
-<h2>Search results</h2>
+<div class="container my-5">
+  <%= link_to "← Back to All Books", books_path, class: "btn btn-outline-secondary mb-4" %>
 
-<% if @books.any? %>
-  <div class="row">
-    <% @books.each do |book| %>
-      <div class="col-md-3">
-        <div class="card mb-3">
-          <% if book.image.attached? %>
-            <%= image_tag book.image, class: "card-img-top" %>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= book.title %></h5>
-            <p class="card-text"><%= book.author %></p>
-            <p class="card-text"><%= book.categories %></p>
+  <h2 class="mb-4">Search Results</h2>
+
+  <% if @books.any? %>
+    <div class="row row-cols-2 row-cols-md-4 g-4">
+      <% @books.each do |book| %>
+        <div class="col">
+          <div class="card h-100 border-0">
+            <%= link_to book_path(book) do %>
+              <% if book.image.attached? %>
+                <%= image_tag book.image, alt: book.title,
+                    class: "card-img-top img-fluid rounded",
+                    style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+              <% else %>
+                <div class="text-center py-5 bg-light text-muted">No image</div>
+              <% end %>
+            <% end %>
+
+            <div class="card-body p-2">
+              <h6 class="card-title fw-bold mb-1"><%= truncate(book.title, length: 20) %></h6>
+              <p class="card-text text-muted small mb-2"><%= book.author %></p>
+              <%= render "books/availability", book: book %>
+              <p style="margin-bottom: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "$", precision: 0) %> /month</p>
+              <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <p>No books found for '<%= params[:query] %>'</p>
-<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">No books matched your search.</p>
+  <% end %>
+</div>
