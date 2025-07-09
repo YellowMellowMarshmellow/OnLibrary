@@ -1,23 +1,38 @@
-<div class="mx-5 p-4">
-  <h1>Rent your book</h1>
-</div>
-
-<div class="mx-5 p-4 my-5">
-  <% if current_user.nil? %>
-    <h2>Oops, it seems like you need to log in first!</h2>
-    <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
-  <% else %>
-    <h2>Welcome back<% User.name %>!</h2>
-    <h3>Create a book</h3>
-
-    <%= simple_form_for @book do |f| %>
-      <%= f.input :title %>
-      <%= f.input :author %>
-      <%= f.input :categories %>
-      <%= f.input :description %>
-      <%= f.input :price %>
-      <%= f.input :image, as: :file %>
-      <%= f.button :submit %>
-    <% end %>
+<div class="container">
+  <%= link_to root_path, class: "btn btn-link", style: "position: relative; z-index: 10;" do %>
+      <i class="fa-solid fa-chevron-left"></i> Back
   <% end %>
+  <div>
+    <h1 style="text-align: center; margin-bottom: 1rem;">Rent your book</h1>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="mx-5 p-4 my-5">
+        <div class="form form-inputs" style="margin-top: 2rem; margin-bottom: 1rem;">
+        <% if current_user.nil? %>
+          <h2>Oops, it seems like you need to log in first!</h2>
+          <%= link_to "Log in", new_user_session_path, data: { "turbo-method": :get }, class: "btn btn-primary" %>
+        <% else %>
+          <h3>Welcome back<% User.name %>!</h3>
+          <h4>Create a book</h4>
+            <%= simple_form_for @book do |f| %>
+              <%= f.input :title, input_html: { class: "inputs" } %>
+              <%= f.input :author, input_html: { class: "inputs" } %>
+              <%= f.input :categories, input_html: { class: "inputs" } %>
+              <%= f.input :description, input_html: { class: "inputs" } %>
+              <%= f.input :price, input_html: { class: "inputs" } %>
+              <%= f.input :photo, as: :file, input_html: { class: "inputs" } %>
+            <div class="login-with">
+              <div class="form-actions button-confirm su-btn" style="margin-top: 2.5rem; margin-bottom: 2rem;">
+                <%= f.button :submit %>
+              </div>
+            </div> 
+            <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
