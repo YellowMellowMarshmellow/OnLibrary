@@ -43,6 +43,20 @@
     outline: none;
 }
 
+.inputs {
+    width: 40rem;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
 .input::placeholder {
     color: var(--font-color-sub);
     opacity: 0.8;
@@ -101,4 +115,9 @@
 .su-btn {
     background-color: #BC70FF;
     color: white;
+}
+
+.form label {
+    font-weight: bold;
+    color: #BC70FF;
 }
