@@ -18,7 +18,7 @@
     <tbody>
       <% @rentals.each do |rental| %>
         <tr>
-          <td><%= image_tag rental.book.image, alt: rental.book.title, width: 50 %></td>
+          <td><%= cl_image_tag rental.book.image.key, alt: rental.book.title, width: 50 %></td>
           <td><%= rental.book.title %></td>
           <td><%= rental.rental_start_date %></td>
           <td><%= rental.rental_end_date || 'Ongoing' %></td>

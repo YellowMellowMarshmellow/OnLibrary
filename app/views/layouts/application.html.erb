@@ -17,10 +17,13 @@
 
   <body>
     <header>
-      <%= render "books/navbar", book: @book, rental: @rental %>
+      <%= render "books/navbar" %>
     </header>
-    <%= yield %>
 
-    <%= render "books/footer" %>
+    <main>
+      <%= yield %>
+    </main>
+
+      <%= render "books/footer" %>
   </body>
 </html>

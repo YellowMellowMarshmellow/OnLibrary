@@ -12,7 +12,7 @@
           <div class="card h-100 border-0">
             <%= link_to book_path(book) do %>
               <% if book.image.attached? %>
-                <%= image_tag book.image, alt: book.title,
+                <%= cl_image_tag book.image.key, alt: book.title,
                     class: "card-img-top img-fluid rounded",
                     style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
               <% else %>
@@ -24,7 +24,7 @@
               <h6 class="card-title fw-bold mb-1"><%= truncate(book.title, length: 20) %></h6>
               <p class="card-text text-muted small mb-2"><%= book.author %></p>
               <%= render "books/availability", book: book %>
-              <p style="margin-bottom: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "$", precision: 0) %> /month</p>
+              <p style="margin-bottom: 7px; font-size: 15px; font-weight: 500;"><%= number_to_currency(book.price, unit: "€") %> /month</p>
               <%= link_to 'View Details', book_path(book), class: "btn btn-sm btn-primary card-btn" %>
             </div>
           </div>
