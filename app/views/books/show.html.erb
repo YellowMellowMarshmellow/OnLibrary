@@ -19,25 +19,110 @@
             <%= link_to 'View My Rentals', rentals_path, class: 'btn btn-primary btn-lg btn-fixed-width' %>
         <% else %>
             <div data-controller="rent-book" class="d-flex flex-column align-items-start gap-2 mt-1">
-            <%= render "books/availability", book: @book %>
-            <!-- button -->
-            <button type="button"
-                    class="btn btn-primary btn-lg btn-fixed-width"
-                    data-rent-book-target="button"
-                    data-action="rent-book#openForm">
-              Rent this book
-            </button>
+              <%= render "books/availability", book: @book %>
+              <!-- button -->
+              <button type="button"
+                      class="btn btn-primary btn-lg btn-fixed-width"
+                      data-rent-book-target="button"
+                      data-action="rent-book#openForm">
+                Rent this book
+              </button>
 
-            <!-- form -->
-            <%= render "rentals/rental_form", book: @book %>
-          </div>
+              <!-- form -->
+              <%= render "rentals/rental_form", book: @book %>
+            </div>
         <% end %>
       <% else %>
         <p>Please <%= link_to 'sign in', new_user_session_path %> to rent this book.</p>
       <% end %>
-
     </div>
   </div>
 </div>
 
 <%= render "books/caroussel", book: @book %>
+
+
+<!-- ✅ Review Form Section -->
+<% if user_signed_in? && current_user.rentals.where(book: @book).where("rental_end_date IS NULL OR rental_end_date >= ?", Date.current).exists? %>
+  <div class="container mt-5">
+    <h2>Leave a Review</h2>
+
+    <%= form_with model: [@book, Review.new], local: true do |f| %>
+      <div>
+        <%= f.label :rating, "Rating" %><br>
+        <div class="d-flex justify-content-start">
+          <div class="star-rating">
+            <% 5.downto(1) do |i| %>
+              <%= f.radio_button :rating, i, id: "star#{i}" %>
+              <label for="star<%= i %>">★</label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :content, "Comment" %><br>
+        <%= f.text_area :content %>
+      </div>
+
+      <%= f.submit "Submit Review", class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
+<% elsif !user_signed_in? %>
+  <div class="container mt-5">
+    <h2>Leave a Review</h2>
+    <p class="text-muted">You must <%= link_to 'sign in', new_user_session_path %> and rent this book to leave a review.</p>
+  </div>
+<% end %>
+
+<!-- ✅ Review List -->
+<div class="container mt-4">
+  <h2>Reviews</h2>
+  <% @book.reviews.each do |review| %>
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= "★" * review.rating.to_i %><%= "☆" * (5 - review.rating.to_i) %>
+        </h5>
+        <p class="card-text"><%= review.content %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- ✅ Final CSS for star rating behavior -->
+<style>
+  .star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+  }
+
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+
+  .star-rating label {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  /* Reset color when unchecked */
+  .star-rating input[type="radio"]:checked ~ label {
+    color: #ccc;
+  }
+
+  /* Selected stars */
+  .star-rating input[type="radio"]:checked + label,
+  .star-rating input[type="radio"]:checked + label ~ label {
+    color: #000;
+  }
+
+  /* Hovered stars */
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    color: #000;
+  }
+</style>
