@@ -10,7 +10,7 @@
               <% books_group.each do |book| %>
                 <div class="col text-start">
                   <%= link_to book_path(book) do %>
-                    <%= image_tag url_for(book.image), alt: book.title,
+                    <%= cl_image_tag book.image.key, alt: book.title,
                       class: "img-fluid rounded shadow-sm mb-2",
                       style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
                   <% end %>

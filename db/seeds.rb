@@ -46,7 +46,7 @@ books_data = [
     categories: "Fantasy, Adventure",
     description: "The story of a young wizard and his friends.",
     user: user,
-    image_file: "Harry_Potter_cover.jpeg",
+    image_file: "Harry_Potter_cover.jpg",
     price: random_price
   },
   {
@@ -82,7 +82,7 @@ books_data = [
     categories: "Young Adult, Drama",
     description: "A high school experiment to demonstrate the rise of fascism spirals out of control.",
     user: user,
-    image_file: "The_Wave_cover.jpeg",
+    image_file: "The_Wave_cover.jpg",
     price: random_price
   },
   {
@@ -129,7 +129,7 @@ books_data.each do |book_data|
 
   image_path = Rails.root.join("app/assets/images/#{image_file}")
   if File.exist?(image_path)
-    book.image.attach(io: File.open(image_path), filename: image_file)
+    book.image.attach(io: File.open(image_path), filename: image_file, content_type: "image/jpg" )
     puts "✅ Attached image for #{book.title}"
   else
     puts "❌ Image not found for #{book.title} at path #{image_path}"
