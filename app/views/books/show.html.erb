@@ -5,7 +5,9 @@
 
   <div class="row align-items-start g-5 py-5">
     <div class="col-10 col-sm-8 col-lg-6" style="margin-top:20px;">
-      <%= cl_image_tag @book.image.key, class: "d-block mx-lg-auto img-fluid", alt: @book.title, width: 300, height: 100, loading: "lazy" %>
+      <% if @book.image.attached? %>
+       <%= cl_image_tag @book.image.key, class: "d-block mx-lg-auto img-fluid", alt: @book.title, width: 300, height: 100, loading: "lazy" %>
+      <% end %>
     </div>
 
     <div class="col-lg-6 d-flex flex-column justify-content-between h-100" style="margin-top:20px;">
