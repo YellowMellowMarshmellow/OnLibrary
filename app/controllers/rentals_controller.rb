@@ -25,7 +25,8 @@ class RentalsController < ApplicationController
   def update
     if @rental.update(rental_end_date: Date.current)
       @rental.book.update(available: true)
-      redirect_to rentals_path, notice: 'Rental updated successfully.'
+      flash[:notice] = "You have successfully returned the book!"
+      redirect_to rentals_path
     else
       flash.now[:alert] = 'Unable to update rental.'
       render :index, status: :unprocessable_entity

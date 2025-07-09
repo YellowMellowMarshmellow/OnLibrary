@@ -13,6 +13,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
@@ -22,6 +24,27 @@
 
     <main>
       <%= yield %>
+
+      <% if flash[:notice] %>
+      <script>
+        Swal.fire({
+          icon: 'success',
+          title: "<%= j flash[:notice] %>",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      </script>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <script>
+        Swal.fire({
+          icon: 'error',
+          title: "<%= j flash[:alert] %>",
+          showConfirmButton: true
+        });
+      </script>
+    <% end %>
     </main>
 
       <%= render "books/footer" %>
