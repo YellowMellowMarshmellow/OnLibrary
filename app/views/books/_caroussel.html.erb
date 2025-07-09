@@ -10,9 +10,15 @@
               <% books_group.each do |book| %>
                 <div class="col text-start">
                   <%= link_to book_path(book) do %>
-                    <%= cl_image_tag book.image.key, alt: book.title,
-                      class: "img-fluid rounded shadow-sm mb-2",
-                      style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+                    <% if book.image.attached? %>
+                      <%= cl_image_tag book.image.key, alt: book.title,
+                        class: "img-fluid rounded shadow-sm mb-2",
+                        style: "height: 280px; object-fit: contain; width: 100%; background: transparent;" %>
+                    <% else %>
+                      <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #eee; border-radius: .5rem;">
+                        <span>No image</span>
+                      </div>
+                    <% end %>
                   <% end %>
 
                   <div class="ms-custom">
