@@ -18,13 +18,13 @@
     <tbody>
       <% @rentals.each do |rental| %>
         <tr>
-          <td><%= cl_image_tag rental.book.image.key, alt: rental.book.title, width: 50 %></td>
+          <td><%= image_tag url_for(rental.book.image), alt: rental.book.title, width: 50 %></td>
           <td><%= rental.book.title %></td>
           <td><%= rental.rental_start_date %></td>
           <td><%= rental.rental_end_date || 'Ongoing' %></td>
           <td>
             <% if rental.rental_end_date.nil? %>
-              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch, class: "btn btn-sm btn-purple card-btn" %>
+              <%= button_to 'Return Book', book_rental_path(rental.book, rental), method: :patch, class: "btn btn-sm btn-primary card-btn" %>
             <% else %>
               Returned
             <% end %>
